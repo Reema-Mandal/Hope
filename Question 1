@@ -1,0 +1,212 @@
+5GB EBS VOLUME ATTACH AND CREATE 10 FILES
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\10839967\Downloads> ssh -i "new_key.pem" ec2-user@ec2-3-238-223-62.compute-1.amazonaws.com
+The authenticity of host 'ec2-3-238-223-62.compute-1.amazonaws.com (3.238.223.62)' can't be established.
+ED25519 key fingerprint is SHA256:hNWctXBac4bWfKpPsdJgauCZSVE7YBbXiFLx5XUjFaM.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-3-238-223-62.compute-1.amazonaws.com' (ED25519) to the list of known hosts.
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+[ec2-user@ip-172-31-9-61 ~]$ sudo su -
+[root@ip-172-31-9-61 ~]# hostnamectl set-hostname aws
+[root@ip-172-31-9-61 ~]# bash
+[root@aws ~]# yum install httpd -y
+Amazon Linux 2023 Kernel Livepatch repository                                                                       181 kB/s |  19 kB     00:00
+Dependencies resolved.
+====================================================================================================================================================
+ Package                                Architecture              Version                                      Repository                      Size
+====================================================================================================================================================
+Installing:
+ httpd                                  x86_64                    2.4.64-1.amzn2023.0.1                        amazonlinux                     47 k
+Installing dependencies:
+ apr                                    x86_64                    1.7.5-1.amzn2023.0.4                         amazonlinux                    129 k
+ apr-util                               x86_64                    1.6.3-1.amzn2023.0.1                         amazonlinux                     98 k
+ generic-logos-httpd                    noarch                    18.0.0-12.amzn2023.0.3                       amazonlinux                     19 k
+ httpd-core                             x86_64                    2.4.64-1.amzn2023.0.1                        amazonlinux                    1.4 M
+ httpd-filesystem                       noarch                    2.4.64-1.amzn2023.0.1                        amazonlinux                     13 k
+ httpd-tools                            x86_64                    2.4.64-1.amzn2023.0.1                        amazonlinux                     81 k
+ libbrotli                              x86_64                    1.0.9-4.amzn2023.0.2                         amazonlinux                    315 k
+ mailcap                                noarch                    2.1.49-3.amzn2023.0.3                        amazonlinux                     33 k
+Installing weak dependencies:
+ apr-util-openssl                       x86_64                    1.6.3-1.amzn2023.0.1                         amazonlinux                     17 k
+ mod_http2                              x86_64                    2.0.27-1.amzn2023.0.3                        amazonlinux                    166 k
+ mod_lua                                x86_64                    2.4.64-1.amzn2023.0.1                        amazonlinux                     60 k
+
+Transaction Summary
+====================================================================================================================================================
+Install  12 Packages
+
+Total download size: 2.3 M
+Installed size: 6.9 M
+Downloading Packages:
+(1/12): apr-util-openssl-1.6.3-1.amzn2023.0.1.x86_64.rpm                                                            578 kB/s |  17 kB     00:00
+(2/12): apr-util-1.6.3-1.amzn2023.0.1.x86_64.rpm                                                                    2.8 MB/s |  98 kB     00:00
+(3/12): apr-1.7.5-1.amzn2023.0.4.x86_64.rpm                                                                         2.9 MB/s | 129 kB     00:00
+(4/12): generic-logos-httpd-18.0.0-12.amzn2023.0.3.noarch.rpm                                                       932 kB/s |  19 kB     00:00
+(5/12): httpd-2.4.64-1.amzn2023.0.1.x86_64.rpm                                                                      2.3 MB/s |  47 kB     00:00
+(6/12): httpd-filesystem-2.4.64-1.amzn2023.0.1.noarch.rpm                                                           593 kB/s |  13 kB     00:00
+(7/12): httpd-core-2.4.64-1.amzn2023.0.1.x86_64.rpm                                                                  32 MB/s | 1.4 MB     00:00
+(8/12): httpd-tools-2.4.64-1.amzn2023.0.1.x86_64.rpm                                                                2.2 MB/s |  81 kB     00:00
+(9/12): libbrotli-1.0.9-4.amzn2023.0.2.x86_64.rpm                                                                    11 MB/s | 315 kB     00:00
+(10/12): mailcap-2.1.49-3.amzn2023.0.3.noarch.rpm                                                                   1.7 MB/s |  33 kB     00:00
+(11/12): mod_http2-2.0.27-1.amzn2023.0.3.x86_64.rpm                                                                 5.2 MB/s | 166 kB     00:00
+(12/12): mod_lua-2.4.64-1.amzn2023.0.1.x86_64.rpm                                                                   2.4 MB/s |  60 kB     00:00
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                15 MB/s | 2.3 MB     00:00
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                            1/1
+  Installing       : apr-1.7.5-1.amzn2023.0.4.x86_64                                                                                           1/12
+  Installing       : apr-util-openssl-1.6.3-1.amzn2023.0.1.x86_64                                                                              2/12
+  Installing       : apr-util-1.6.3-1.amzn2023.0.1.x86_64                                                                                      3/12
+  Installing       : mailcap-2.1.49-3.amzn2023.0.3.noarch                                                                                      4/12
+  Installing       : httpd-tools-2.4.64-1.amzn2023.0.1.x86_64                                                                                  5/12
+  Installing       : libbrotli-1.0.9-4.amzn2023.0.2.x86_64                                                                                     6/12
+  Running scriptlet: httpd-filesystem-2.4.64-1.amzn2023.0.1.noarch                                                                             7/12
+  Installing       : httpd-filesystem-2.4.64-1.amzn2023.0.1.noarch                                                                             7/12
+  Installing       : httpd-core-2.4.64-1.amzn2023.0.1.x86_64                                                                                   8/12
+  Installing       : mod_http2-2.0.27-1.amzn2023.0.3.x86_64                                                                                    9/12
+  Installing       : mod_lua-2.4.64-1.amzn2023.0.1.x86_64                                                                                     10/12
+  Installing       : generic-logos-httpd-18.0.0-12.amzn2023.0.3.noarch                                                                        11/12
+  Installing       : httpd-2.4.64-1.amzn2023.0.1.x86_64                                                                                       12/12
+  Running scriptlet: httpd-2.4.64-1.amzn2023.0.1.x86_64                                                                                       12/12
+  Verifying        : apr-1.7.5-1.amzn2023.0.4.x86_64                                                                                           1/12
+  Verifying        : apr-util-1.6.3-1.amzn2023.0.1.x86_64                                                                                      2/12
+  Verifying        : apr-util-openssl-1.6.3-1.amzn2023.0.1.x86_64                                                                              3/12
+  Verifying        : generic-logos-httpd-18.0.0-12.amzn2023.0.3.noarch                                                                         4/12
+  Verifying        : httpd-2.4.64-1.amzn2023.0.1.x86_64                                                                                        5/12
+  Verifying        : httpd-core-2.4.64-1.amzn2023.0.1.x86_64                                                                                   6/12
+  Verifying        : httpd-filesystem-2.4.64-1.amzn2023.0.1.noarch                                                                             7/12
+  Verifying        : httpd-tools-2.4.64-1.amzn2023.0.1.x86_64                                                                                  8/12
+  Verifying        : libbrotli-1.0.9-4.amzn2023.0.2.x86_64                                                                                     9/12
+  Verifying        : mailcap-2.1.49-3.amzn2023.0.3.noarch                                                                                     10/12
+  Verifying        : mod_http2-2.0.27-1.amzn2023.0.3.x86_64                                                                                   11/12
+  Verifying        : mod_lua-2.4.64-1.amzn2023.0.1.x86_64                                                                                     12/12
+
+Installed:
+  apr-1.7.5-1.amzn2023.0.4.x86_64                      apr-util-1.6.3-1.amzn2023.0.1.x86_64        apr-util-openssl-1.6.3-1.amzn2023.0.1.x86_64
+  generic-logos-httpd-18.0.0-12.amzn2023.0.3.noarch    httpd-2.4.64-1.amzn2023.0.1.x86_64          httpd-core-2.4.64-1.amzn2023.0.1.x86_64
+  httpd-filesystem-2.4.64-1.amzn2023.0.1.noarch        httpd-tools-2.4.64-1.amzn2023.0.1.x86_64    libbrotli-1.0.9-4.amzn2023.0.2.x86_64
+  mailcap-2.1.49-3.amzn2023.0.3.noarch                 mod_http2-2.0.27-1.amzn2023.0.3.x86_64      mod_lua-2.4.64-1.amzn2023.0.1.x86_64
+
+Complete!
+[root@aws ~]# systemctl start httpd
+[root@aws ~]# systemctl enable httpd
+Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → /usr/lib/systemd/system/httpd.service.
+[root@aws ~]# df -h
+Filesystem        Size  Used Avail Use% Mounted on
+devtmpfs          4.0M     0  4.0M   0% /dev
+tmpfs             453M     0  453M   0% /dev/shm
+tmpfs             181M  448K  181M   1% /run
+/dev/nvme0n1p1    8.0G  1.6G  6.4G  20% /
+tmpfs             453M     0  453M   0% /tmp
+/dev/nvme0n1p128   10M  1.3M  8.7M  13% /boot/efi
+tmpfs              91M     0   91M   0% /run/user/1000
+[root@aws ~]# fdisk -l
+Disk /dev/nvme0n1: 8 GiB, 8589934592 bytes, 16777216 sectors
+Disk model: Amazon Elastic Block Store
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: 71C04E12-9A2C-42A0-B781-7E7C4F7D24B6
+
+Device           Start      End  Sectors Size Type
+/dev/nvme0n1p1   24576 16777182 16752607   8G Linux filesystem
+/dev/nvme0n1p127 22528    24575     2048   1M BIOS boot
+/dev/nvme0n1p128  2048    22527    20480  10M EFI System
+
+Partition table entries are not in disk order.
+
+
+Disk /dev/nvme1n1: 5 GiB, 5368709120 bytes, 10485760 sectors
+Disk model: Amazon Elastic Block Store
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+[root@aws ~]# lsblk
+NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+nvme0n1       259:0    0   8G  0 disk
+├─nvme0n1p1   259:1    0   8G  0 part /
+├─nvme0n1p127 259:2    0   1M  0 part
+└─nvme0n1p128 259:3    0  10M  0 part /boot/efi
+nvme1n1       259:4    0   5G  0 disk
+[root@aws ~]# blkid
+/dev/nvme0n1p1: LABEL="/" UUID="096a1b2c-d815-4f9c-b224-dc88341d1513" BLOCK_SIZE="4096" TYPE="xfs" PARTLABEL="Linux" PARTUUID="3514fe78-b5f9-4d8e-9584-21d19d818c88"
+/dev/nvme0n1p128: SEC_TYPE="msdos" UUID="0A45-DE8A" BLOCK_SIZE="512" TYPE="vfat" PARTLABEL="EFI System Partition" PARTUUID="b49445c0-fd04-4205-b814-60d7234c99d3"
+/dev/nvme0n1p127: PARTLABEL="BIOS Boot Partition" PARTUUID="fe94459e-51c8-47f1-8099-83b1a7d957d3"
+[root@aws ~]# fdisk -l
+Disk /dev/nvme0n1: 8 GiB, 8589934592 bytes, 16777216 sectors
+Disk model: Amazon Elastic Block Store
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: 71C04E12-9A2C-42A0-B781-7E7C4F7D24B6
+
+Device           Start      End  Sectors Size Type
+/dev/nvme0n1p1   24576 16777182 16752607   8G Linux filesystem
+/dev/nvme0n1p127 22528    24575     2048   1M BIOS boot
+/dev/nvme0n1p128  2048    22527    20480  10M EFI System
+
+Partition table entries are not in disk order.
+
+
+Disk /dev/nvme1n1: 5 GiB, 5368709120 bytes, 10485760 sectors
+Disk model: Amazon Elastic Block Store
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+[root@aws ~]# mkfs.ext4 /dev/nvme0n1
+mke2fs 1.46.5 (30-Dec-2021)
+/dev/nvme0n1 is apparently in use by the system; will not make a filesystem here!
+[root@aws ~]# mkdir /data
+[root@aws ~]# mount /dev/nvme0n1 /data
+mount: /data: /dev/nvme0n1 already mounted or mount point busy.
+[root@aws ~]# cd /data
+[root@aws data]# touch reema.txt{1..10}
+[root@aws data]# ll
+total 0
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt1
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt10
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt2
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt3
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt4
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt5
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt6
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt7
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt8
+-rw-r--r--. 1 root root 0 Aug 14 14:09 reema.txt9
+[root@aws data]# history
+    1  yum install httpd -y
+    2  systemctl start httpd
+    3  systemctl enable httpd
+    4  df -h
+    5  fdisk -l
+    6  lsblk
+    7  blkid
+    8  fdisk -l
+    9  mkfs.ext4 /dev/nvme0n1
+   10  mkdir /data
+   11  mount /dev/nvme0n1 /data
+   12  cd /data
+   13  touch reema.txt{1..10}
+   14  ll
+   15  history
+[root@aws data]#
