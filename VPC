@@ -1,1 +1,82 @@
+Create INTANCE 
+Connect in terminal
+seach vpc in ec2
+create vpc give name cidr=10.0.0/16
+create
+ ec2 then internet gateway create new gateway give name and create 
+back to internet gateway
+select gateway 
+actions
+
+click on subnet 
+create two subnets 
+only give name one public one private
+put ipv4 as 10.0.0.0/24
+create subnet
+give name
+create subnet
+
+select the correct VPC name
+ipv4 cidr = 10.0.0.0/16
+ipv4 subnet = 10.0.1.0/24
+create subnet
+
+go to route table
+create route table
+give name
+select vpc
+create route table
+
+edit route
+add route 
+
+add 0.0.0.0/0
+add gateway internet gateway 
+save changes
+
+go to subnet association 
+edit subnet association
+select public
+save association
+
+go to EC2
+Launch 2instances with same security group and key and region  in one instance auto assign public ip = enable
+another one -- disable
+create instance 
+8gb gp2
+launch instance
+
+first connect the enabled instance in terminal 
+go to download 
+open the key file copy it's content 
+vim < within quotes the name and extension of the key >
+inside the file paste the copied contents
+come outside
+chmod 400<within quotes key name with extension >
+
+
+goto EC2 
+search vpc
+click nat gateway
+give name
+select the subnet by name (public)
+connectivity type = public
+click on allocate elastic  IP
+
+GOTO ROUte tables 
+select the route
+click on route table id
+edit route table
+add route
+0.o.00/0
+select nat gateway
+save changes
+
+in the first instance 
+goto security group 
+add rules
+ICMP
+HTTP
+Save
+Ping google,com
 
