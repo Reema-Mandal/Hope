@@ -199,6 +199,7 @@ total 0
     3  systemctl enable httpd
     4  df -h
     5  fdisk -l
+    ll
     6  lsblk
     7  blkid
     8  fdisk -l
