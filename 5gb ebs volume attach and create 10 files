@@ -203,7 +203,7 @@ total 0
     6  lsblk
     7  blkid
     8  fdisk -l
-    9  mkfs.ext4 /dev/nvme0n1
+    9  mkfs.ext4 /dev/nvme0n1 --- in our machine it will appear as xvdb1
    10  mkdir /data
    11  mount /dev/nvme0n1 /data
    12  cd /data
