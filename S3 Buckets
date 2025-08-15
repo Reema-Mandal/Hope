@@ -1,0 +1,234 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\10839967> cd ./downloads/
+PS C:\Users\10839967\downloads> ssh -i "bucket_key.pem" ec2-user@ec2-3-81-35-207.compute-1.amazonaws.com
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Fri Aug 15 09:58:01 2025 from 49.32.197.170
+[ec2-user@bucket ~]$ sudo su -
+Last login: Fri Aug 15 09:58:11 UTC 2025 on pts/3
+[root@bucket ~]# sudo yum update
+Last metadata expiration check: 0:33:06 ago on Fri Aug 15 09:46:57 2025.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@bucket ~]# sudo yum install automake fuse fuse-devel gcc-c++ git libcurl-devel libxml2-devel make openssl-devel
+Last metadata expiration check: 0:34:12 ago on Fri Aug 15 09:46:57 2025.
+Package automake-1.16.5-9.amzn2023.0.3.noarch is already installed.
+Package fuse-2.9.9-13.amzn2023.0.2.x86_64 is already installed.
+Package fuse-devel-2.9.9-13.amzn2023.0.2.x86_64 is already installed.
+Package gcc-c++-11.5.0-5.amzn2023.0.4.x86_64 is already installed.
+Package git-2.50.1-1.amzn2023.0.1.x86_64 is already installed.
+Package libcurl-devel-8.11.1-4.amzn2023.0.1.x86_64 is already installed.
+Package libxml2-devel-2.10.4-1.amzn2023.0.12.x86_64 is already installed.
+Package make-1:4.3-5.amzn2023.0.2.x86_64 is already installed.
+Package openssl-devel-1:3.2.2-1.amzn2023.0.1.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@bucket ~]# git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+fatal: destination path 's3fs-fuse' already exists and is not an empty directory.
+[root@bucket ~]# ll
+total 16
+drwxr-xr-x. 8 root root 16384 Aug 15 10:00 s3fs-fuse
+[root@bucket ~]# cd s3fs-fuse
+[root@bucket s3fs-fuse]# ./autogen.sh
+--- Make commit hash file -------
+ -> Git commit hash : 7112471
+--- Finished commit hash file ---
+--- Start autotools -------------
+--- Finished autotools ----------
+[root@bucket s3fs-fuse]# ./configure --prefix=/usr --with-openssl
+configure: loading site script /usr/share/config.site
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for g++... g++
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of g++... gcc3
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking dependency style of gcc... gcc3
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking sys/xattr.h usability... yes
+checking sys/xattr.h presence... yes
+checking for sys/xattr.h... yes
+checking attr/xattr.h usability... no
+checking attr/xattr.h presence... no
+checking for attr/xattr.h... no
+checking sys/extattr.h usability... no
+checking sys/extattr.h presence... no
+checking for sys/extattr.h... no
+checking for fallocate... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for FUSE_T... no
+checking for fuse_library_checking... yes
+checking s3fs build with nettle(GnuTLS)... no
+checking s3fs build with OpenSSL... yes
+checking s3fs build with GnuTLS... no
+checking s3fs build with NSS... no
+checking compile s3fs with... OpenSSL
+checking for DEPS... yes
+checking openssl 3.0 or later... yes
+checking for malloc_trim... yes
+checking for library containing clock_gettime... none required
+checking for clock_gettime... yes
+checking pthread mutex recursive... PTHREAD_MUTEX_RECURSIVE
+checking checking CURLOPT_TCP_KEEPALIVE... yes
+checking checking CURLOPT_SSL_ENABLE_ALPN... yes
+checking checking CURLOPT_KEEP_SENDING_ON_ERROR... yes
+checking for dlopen, dlclose, dlerror, dlsym in -ldl... yes
+checking for git... yes
+checking github short commit hash... (commit:7112471)
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating test/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/man/s3fs.1
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+[root@bucket s3fs-fuse]# make
+make  all-recursive
+make[1]: Entering directory '/root/s3fs-fuse'
+Making all in src
+make[2]: Entering directory '/root/s3fs-fuse/src'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/root/s3fs-fuse/src'
+Making all in test
+make[2]: Entering directory '/root/s3fs-fuse/test'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/root/s3fs-fuse/test'
+Making all in doc
+make[2]: Entering directory '/root/s3fs-fuse/doc'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/root/s3fs-fuse/doc'
+make[2]: Entering directory '/root/s3fs-fuse'
+make[2]: Leaving directory '/root/s3fs-fuse'
+make[1]: Leaving directory '/root/s3fs-fuse'
+[root@bucket s3fs-fuse]# sudo make install
+Making install in src
+make[1]: Entering directory '/root/s3fs-fuse/src'
+make[2]: Entering directory '/root/s3fs-fuse/src'
+ /usr/bin/mkdir -p '/usr/bin'
+  /usr/bin/install -c s3fs '/usr/bin'
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/root/s3fs-fuse/src'
+make[1]: Leaving directory '/root/s3fs-fuse/src'
+Making install in test
+make[1]: Entering directory '/root/s3fs-fuse/test'
+make[2]: Entering directory '/root/s3fs-fuse/test'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/root/s3fs-fuse/test'
+make[1]: Leaving directory '/root/s3fs-fuse/test'
+Making install in doc
+make[1]: Entering directory '/root/s3fs-fuse/doc'
+make[2]: Entering directory '/root/s3fs-fuse/doc'
+make[2]: Nothing to be done for 'install-exec-am'.
+ /usr/bin/mkdir -p '/usr/share/man/man1'
+ /usr/bin/install -c -m 644 man/s3fs.1 '/usr/share/man/man1'
+make[2]: Leaving directory '/root/s3fs-fuse/doc'
+make[1]: Leaving directory '/root/s3fs-fuse/doc'
+make[1]: Entering directory '/root/s3fs-fuse'
+make[2]: Entering directory '/root/s3fs-fuse'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/root/s3fs-fuse'
+make[1]: Leaving directory '/root/s3fs-fuse'
+[root@bucket s3fs-fuse]# verify pkg
+-bash: verify: command not found
+[root@bucket s3fs-fuse]# which s3fs
+/usr/bin/s3fs
+[root@bucket s3fs-fuse]# touch /etc/passwd-s3fs
+[root@bucket s3fs-fuse]# vim /etc/passwd-s3fs
+[root@bucket s3fs-fuse]# sudo chmod 640 /etc/passwd-s3fs
+[root@bucket s3fs-fuse]# s3fs uem /mnt -o passwd_file_file=/etc/passwd-s3fd
+fuse: unknown option `passwd_file_file=/etc/passwd-s3fd'
+[root@bucket s3fs-fuse]# df-h
+-bash: df-h: command not found
+[root@bucket s3fs-fuse]# df -h
+Filesystem        Size  Used Avail Use% Mounted on
+devtmpfs          4.0M     0  4.0M   0% /dev
+tmpfs             453M     0  453M   0% /dev/shm
+tmpfs             181M  452K  181M   1% /run
+/dev/nvme0n1p1    8.0G  2.0G  6.0G  25% /
+tmpfs             453M     0  453M   0% /tmp
+/dev/nvme0n1p128   10M  1.3M  8.7M  13% /boot/efi
+tmpfs              91M     0   91M   0% /run/user/1000
+[root@bucket s3fs-fuse]# mkdir /rcb
+[root@bucket s3fs-fuse]# s3fs uem /rcb -o passwd_file_file=/etc/passwd-s3fd
+fuse: unknown option `passwd_file_file=/etc/passwd-s3fd'
+[root@bucket s3fs-fuse]# cd /rcb/
+[root@bucket rcb]# touch reema.txt{1..10}
+[root@bucket rcb]# cat /etc/passwd-s3fs
+AKIA6MHXHR7JQJ5KJVNH:fl8bqEsg8eaTMOL0Mm9IFe8C1NB9m+oSZF6O6k5Y
+[root@bucket rcb]# history
+    1  sudo yum update
+    2  sudo yum install automake fuse fuse-devel gcc-c++ git libcurl-devel libxml2-devel make openssl-devel
+    3  git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+    4  ll
+    5  cd s3fs-fuse
+    6  ./autogen.sh
+    7  ./configure --prefix=/usr --with-openssl
+    8  make
+    9  sudo make install
+   10  verify pkg
+   11  which s3fs
+   12  touch /etc/passwd-s3fs
+   13  vim /etc/passwd-s3fs
+
+before the next command come to ec2 then search IAM go to users then create user give the name and go to next then attach policy directly under permission policies search 
+S3 full access create user click on username create access key then choose CLI then copy the access key
+paste the access key:security key then escape :wq! then enter 
+   14  sudo chmod 640 /etc/passwd-s3fs
+   15  s3fs uem /mnt -o passwd_file_file=/etc/passwd-s3fd
+   16  df-h
+   17  df -h
+   18  mkdir /rcb
+   19  s3fs uem /rcb -o passwd_file_file=/etc/passwd-s3fd
+   20  cd /rcb/
+   21  touch reema.txt{1..10}
+   22  cat /etc/passwd-s3fs
