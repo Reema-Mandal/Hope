@@ -197,10 +197,13 @@ total 0
     1  yum install httpd -y
     2  systemctl start httpd
     3  systemctl enable httpd
+go to ec2 go to volume click on create volume volume type = gp2 size=5 select zone as 1a(same aas instance)
+click on create volume give name to the volume select the created volume click on actions cliuck on attach volume
+select the instance created by its name give device name = /dev/s/sdb attach volume go to terminal
     4  df -h
     5  fdisk -l
     ll
-    6  lsblk
+    6  lsblk copy the name 
     7  blkid
     8  fdisk -l
     9  mkfs.ext4 /dev/nvme0n1 --- in our machine it will appear as xvdb1
@@ -210,4 +213,4 @@ total 0
    13  touch reema.txt{1..10}
    14  ll
    15  history
-[root@aws data]#
+
