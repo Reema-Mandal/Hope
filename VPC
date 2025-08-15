@@ -1,4 +1,4 @@
-
+VPC
 seach vpc in ec2
 create vpc give name cidr=10.0.0/16
 create
