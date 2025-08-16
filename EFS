@@ -1,9 +1,38 @@
-launch 3 instances with 3 different OS  (AWS , REDHAT, UBUNTU) , different region , same security group , same key
+launch 3 instances with 3 different OS  (AWS , REDHAT, UBUNTU) , different region 1a 1b 1c, same security group , same key
 edit inbound  rules NFS 
+###################3
 AWS Instance connect
-#########
+
 rpmquery nfs-utils
 systemctl start nfs-utils.service
 systemctl status nfs-utils.service
 mkdir /data
-sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-042d
+
+search efs
+create file system
+name and create click on file system id 
+scroll and click network
+go to manage change all the security groups as instances and remove extras and save and attach and then there is a second command
+ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-039d798c91d1efe67.efs.us-east-1.amazonaws.com:/ /data
+cd /data
+cat > index.html
+###########
+REDHAT
+yum install nfs-utils -y
+systemctl start nfs-utils.service
+mkdir /data
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-039d798c91d1efe67.efs.us-east-1.amazonaws.com:/ /data
+cd /data
+cat index.html
+##############
+
+UBUNTU 
+apt update -y
+apt install nfs-common
+systemctl start nfs-utils.service
+mkdir /data
+ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-039d798c91d1efe67.efs.us-east-1.amazonaws.com:/ /data
+cd /data
+cat index.html
+
+go to efs go to file system and add files
