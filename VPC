@@ -8,7 +8,7 @@ select gateway
 actions
 attach to vpc
 select vpc name
-ok
+attach internet gateway
 
 click on subnet 
 create two subnets 
@@ -16,7 +16,7 @@ only give name one public one private
 put ipv4 as 10.0.0.0/24
 create subnet
 give name ( public and private with different zones)
-create subnet
+create subnet twice
 
 select the correct VPC name
 ipv4 cidr = 10.0.0.0/16
@@ -49,13 +49,16 @@ create instance
 8gb gp2
 launch instance
 
-first connect the enabled instance in terminal 
-go to download 
+first connect the enabled (public)instance in terminal 
+and also connect the private instance in same terminal
+it wii appear as permission denied- then take ss 
+##########################################################
+{go to download 
 open the key file in notepad copy it's content 
-vim < within quotes the name and extension of the key >
+vim < within quotes the name and extension of the key > fcf.pem //example
 inside the file paste the copied contents
 come outside
-chmod 400<within quotes key name with extension >
+chmod 400<within quotes key name with extension >} dont do from 53 to 58
 
 
 goto EC2 
