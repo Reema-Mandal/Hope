@@ -1,5 +1,5 @@
 
-create 2 instances dfferent zone same region same security group same key add inbound port 80 
+create 2 instances dfferent zone same region same security group same key add inbound port 80 http select
 go to instances load balancing (target groups) create target groups name and then next under available instances choose two 
 load balancer servers then click include as pending below
 then create target group go to load balancers create load balancer then click application load balancer  then create 
