@@ -430,3 +430,12 @@ tmpfs              91M     0   91M   0% /run/user/1000
 
   NOW REBOOT THE INSTANCE PASTE THE NEW IP AND RUN WITH 8080
 
+CONNECT WITH GITHUB -- NEW REPO -- SETTINGS -- WEBHOOKS -- ADD WEBHOOKS --- PLAYLOAD URL 
+COPY PASTE IP OF JENKINS/GITHUB-WEBHOOK/
+CONTENT TYPE -/json
+go to jenkins click on dp now go to security and add new token now copy the token link go to webhooks
+paste in secret key add webhooks
+new item -- freestyle project -- source code management -- git -- repo link-- go to jenkins
+source code-- repo url of github (https) 
+apply save build now jenkins build -- workspace -- underbuilds -- dropdown -- console output 
+take screenshot
